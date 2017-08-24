@@ -7,6 +7,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 /**
@@ -31,8 +33,14 @@ public class AnalyticsResource {
 
     @GET
     public List<PhotonReading> filterReading(@QueryParam("day")int day,@QueryParam("month")int month,@QueryParam("year")int year){
-        //TODO handle arguments as 0 ; If not passed, QueryParam sets to 0
-        LocalDate filterDate = LocalDate.of(year,month,day);
-        return service.filterReadings(t -> t.getDate().equals(filterDate));
+        if(day != 0 && month != 0 && year != 0) return service.filterReadings(t -> t.getDate().equals(LocalDate.of(year,month,day)));
+        if(day == 0 && month != 0 && year != 0) return service.filterReadings(t -> t.getDate().getYear() == year && t.getDate().getMonth().equals(Month.of(month)));
+        if(day == 0 && month == 0 && year != 0) return service.filterReadings(t -> t.getDate().getYear() == year);
+        return service.getReadings();
+    }
+
+    @POST
+    public PhotonReading addReading(PhotonReading reading){
+        return service.addReading(reading);
     }
 }

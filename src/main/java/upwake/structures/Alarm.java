@@ -11,14 +11,18 @@ import java.util.ArrayList;
 @XmlRootElement
 public class Alarm {
     private ArrayList<String> days;
-    private LocalTime hour;
+    private int hour;
+    private int min;
     private String soundURL;
     private long id;
+    private boolean active;
 
-    public Alarm(ArrayList<String> days, LocalTime hour, String soundURL) {
+    public Alarm(ArrayList<String> days, int hour, int min, String soundURL) {
         this.days = days;
         this.hour = hour;
+        this.min = min;
         this.soundURL = soundURL;
+        this.active = false;
     }
 
     public ArrayList<String> getDays() {
@@ -29,11 +33,15 @@ public class Alarm {
         this.days = days;
     }
 
-    public LocalTime getHour() {
+    public int getHour() {
         return hour;
     }
 
-    public void setHour(LocalTime hour) {
+    public int getMin() {
+        return min;
+    }
+
+    public void setHour(int hour) {
         this.hour = hour;
     }
 
@@ -51,5 +59,17 @@ public class Alarm {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public void setMin(int min) {
+        this.min = min;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
