@@ -1,0 +1,42 @@
+ <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h3>Alarms that are currently set</h3>
+
+      <div *ngIf="selectedAlarm == null">
+        <label>Hour: </label> <input #alarmHour />
+        <label>Minute: </label> <input #alarmMinute />
+        <button (click)="add(alarmHour.value, alarmMinute.value);
+                    alarmHour.value='';
+                    alarmMinute.value='';">
+          Add
+        </button>
+      </div>
+
+      <alarm-detail [alarm]="selectedAlarm"></alarm-detail>
+      <div *ngIf="selectedAlarm">
+        <button (click)="selectedAlarm = null;">
+          Close
+        </button>
+      </div>
+      <div class="grid grid-pad">
+        <a *ngFor="let alarm of alarms" (click)="onSelect(alarm)"
+           class="col-1-4" [class.selected]="alarm === selectedAlarm">
+          <div class="module hero">
+            <h4>{{alarm.hour | number : '2.0-0'}}:{{alarm.minute | number : '2.0-0'}}</h4>
+          </div>
+        </a>
+
+      </div>
+
+
+
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+
+
+
+
+
