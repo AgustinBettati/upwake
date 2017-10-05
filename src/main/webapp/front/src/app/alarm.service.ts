@@ -19,6 +19,15 @@ export class AlarmService {
     return Promise.resolve(newAlarm);
   }
 
+  public deleteAlarm(id: number){
+    for(let i = alarms.length - 1; i >= 0; i--) {
+      if(alarms[i].id === id) {
+        alarms.splice(i, 1);
+        return;
+      }
+    }
+  }
+
   public getAlarm(id: number) {
     return this.getAlarms()
       .then(alarms => alarms.find(alarm => alarm.id === id));

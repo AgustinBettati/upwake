@@ -1,7 +1,8 @@
  <div class="row">
     <div class="col-sm-2"></div>
     <div class="col-sm-8">
-      <h3>Alarms that are currently set</h3>
+      <h1 class="display-4" style="margin-top: 30px;margin-bottom: 30px">
+        Alarms currently set</h1>
 
       <div *ngIf="selectedAlarm == null">
         <label>Hour: </label> <input #alarmHour />
@@ -13,7 +14,7 @@
         </button>
       </div>
 
-      <alarm-detail [alarm]="selectedAlarm"></alarm-detail>
+      <alarm-detail [alarm]="selectedAlarm" (deleteSubmit$)="handleDeleteSubmit($event)"></alarm-detail>
       <div *ngIf="selectedAlarm">
         <button (click)="selectedAlarm = null;">
           Close

@@ -5,14 +5,14 @@ import {AlarmService} from "./alarm.service";
 @Component({
   selector: 'my-app',
   template: `
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" >
       <a class="navbar-brand" >UpWake</a>
       <li class="nav-item">
         <a class="nav-link" routerLink="/dashboard">Alarms</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link" routerLink="/">Config</a>
+        <a class="nav-link" routerLink="/demo">Demo</a>
       </li>
       
       <li class="nav-item">

@@ -25,6 +25,12 @@ export class DashboardComponent implements OnInit{
     this.selectedAlarm = alarm;
   }
 
+  handleDeleteSubmit(alarm: Alarm): void {
+    console.log("The Alarm " + alarm.hour + " will be deleted");
+    this.selectedAlarm = null;
+    this.alarmService.deleteAlarm(alarm.id);
+
+  }
   add(hour: number, minute: number): void {
     this.alarmService.create(hour, minute);
       // .then(alarm => {
